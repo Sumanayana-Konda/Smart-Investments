@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+body{
+background-color:lightblue;
+background-image:url("https://images.pexels.com/photos/366551/pexels-photo-366551.jpeg");
+background-repeat:no-repeat;
+height:100%;
+width:100%;
+background-size:cover;
+color:black;
+}
+a:link{
+	color:brown;
+	text-decoration:none;
+}
+a:visited{
+color:black;
+}
+a:hover{
+color:red;
+}
+a:active{
+color:grey;
+}
+.main-nav{
+	display:flex;
+	flex-direction:column;
+	font-size:x-large;
+	font-style:oblique;
+	text-align:center;
+	float:right;
+
+}
+</style>
+</head>
+<body>
+	<script>
+		function getIp()
+		{
+			var val=document.getElementById("myPrice").value
+			if(val<=0 || val>10)
+			window.alert("Enter value between 1 and 10")
+			else
+			{
+				var ele=document.getElementById("temp").innerHTML
+				var arr=ele.split(" ")
+				var table=document.createElement("Table")
+				table.border="2px"
+				table.style.backgroundColor="white"
+				table.className="table"
+				var row = table.insertRow(-1);
+				var headerCell1 = document.createElement("TH");
+				headerCell1.innerHTML = "Date";
+				var headerCell2 = document.createElement("TH");
+				headerCell2.innerHTML = "Price";
+				row.appendChild(headerCell1);
+				row.appendChild(headerCell2);
+				for (var i = 0; i <val; i++)
+				{
+					row = table.insertRow(-1);
+					var d = new Date()
+					d.setDate(d.getDate()- i);
+					var cell2 = row.insertCell(-1);
+					cell2.innerHTML=d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear();
+					var cell1 = row.insertCell(-1);
+					v=parseInt(arr[i].trim())*70;
+					cell1.innerHTML =v+" Rs";
+				}
+				var dvTable = document.getElementById("tab");
+				document.getElementById("tab").innerHTML="";
+				dvTable.appendChild(table);
+			}
+		}
+	</script>
+<div class="container-fluid">
+	<div class="container">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+		  <div class="container">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="{{url_for('home')}}">SmartInvestmentApp</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+			  <ul class="nav navbar-nav">
+				<li class="active"><a href="{{url_for('home')}}">Index</a></li>
+				<li><a href="{{url_for('index')}}">House</a></li>
+			  </ul>
+			</div>
+		  </div>
+		</nav>
+	</div>
+	<br><br><br><br><br>
+	<input list="days" id="myPrice" name="myPrice" placeholder="Choose number of days from this list:" />
+	<datalist id="days">
+		<option value="1">
+		<option value="2">
+		<option value="3">
+		<option value="4">
+		<option value="5">
+		<option value="6">
+		<option value="7">
+		<option value="8">
+		<option value="9">
+		<option value="10">
+	</datalist>
+	<button  onclick=getIp()>GetValues</button>
+	<div id="temp" hidden>{%for i in data %}{{i}} {%endfor%}</div>
+	<div class="container">
+		<div class="row">
+			<div  style = "margin-left:-60px" class="col-xs-3" id="tab"></div>
+			<div class="col-3">
+				<img align='right' src="{{url_for('static', filename='predicted.png')}}"/>
+			</div>
+
+			<div class="col-3">
+				<img hspace='20px' align='right' src="{{url_for('static', filename='forecast.png')}}" />
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
