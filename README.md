@@ -1,5 +1,6 @@
 # Smart-Investments
 
+http://sumanayana.me/Smart-Investments/
 
 ## **Overview**
 This application is designed to assist users in planning their investments well, as it provides them with accurate predictions of the price range of various major investments such as houses and gold. The house price predictions are also beneficial for property investors to know the trend of housing prices in certain locations. Gold price prediction offers insights into gold price fluctuations, behavior, and dynamics, ultimately providing the opportunity of gaining significant profits.
